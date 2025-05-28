@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Achievements{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h2>Achievements</h2>
+        <a href="{{ url_for('main.add_achievement') }}" class="btn btn-primary">Add Achievement</a>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+        {% for achievement in achievements %}
+        <div class="card">
+            <h3>{{ achievement.title }}</h3>
+            <p>{{ achievement.description }}</p>
+            <p><strong>Student:</strong> {{ achievement.student.first_name }} {{ achievement.student.last_name }}</p>
+            <p><strong>Date:</strong> {{ achievement.date_achieved.strftime('%B %d, %Y') }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
